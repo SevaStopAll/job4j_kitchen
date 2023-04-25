@@ -9,8 +9,7 @@ import java.util.Map;
 @Service
 @Slf4j
 public class SimpleKitchenService  {
-
-    @KafkaListener(topics = "job4j_orders")
+    @KafkaListener(topics = "job4j_preorder")
     public void receiveOrder(Map order) {
         log.debug(order.get("dishes").toString());
     }
