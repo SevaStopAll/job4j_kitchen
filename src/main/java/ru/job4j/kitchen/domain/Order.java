@@ -16,7 +16,7 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name="dish")
+    @Column(name = "dish")
     private String description;
     private LocalDateTime created = LocalDateTime.now();
 
