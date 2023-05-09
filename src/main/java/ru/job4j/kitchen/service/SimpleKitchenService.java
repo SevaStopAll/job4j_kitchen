@@ -24,6 +24,12 @@ public class SimpleKitchenService {
     private final StatusRepository statuses;
     private final KafkaTemplate<String, Object> kafkaTemplate;
 
+    /**
+     * Создать новый заказ, полученный из сервиса заказов.
+     *
+     * @param order заказ.
+     * @return Optional заказа.
+     */
     @KafkaListener(topics = "job4j_preorder")
     public void receiveOrder(Map order) {
         Order kitchenOrder = new Order();
@@ -35,6 +41,12 @@ public class SimpleKitchenService {
         orders.save(kitchenOrder);
     }
 
+    /**
+     * Изменить заказ.
+     *
+     * @param order заказ.
+     * @return результат изменения.
+     */
     @Transactional
     public boolean update(Order order) {
         if (orders.findById(order.getId()).isEmpty()) {
@@ -45,18 +57,42 @@ public class SimpleKitchenService {
         return true;
     }
 
+    /**
+     * Получить список заказов.
+     *
+     * @return Список заказов кухни.
+     */
     public Collection<Order> findAll() {
         return orders.findAll();
     }
+
+    /**
+     * Найти заказ по идентификатору.
+     *
+     * @param id идентификатор заказа.
+     * @return Optional заказа.
+     */
 
     public Optional<Order> findById(int id) {
         return orders.findById(id);
     }
 
+    /**
+     * Найти статус заказа по идентификатору статуса.
+     *
+     * @param id идентификатор статуса.
+     * @return Optional статуса заказа.
+     */
+
     public Optional<Status> findStatusById(int id) {
         return statuses.findById(id);
     }
 
+    /**
+     * Отправить изменения о статусе заказа в главный сервис.
+     *
+     * @param order заказ с идентификатором.
+     */
     @Transactional
     public void changeStatus(Order order) {
         Map<String, Integer> data = new HashMap();
