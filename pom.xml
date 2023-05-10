@@ -10,6 +10,7 @@
 	</parent>
 	<groupId>ru.job4j</groupId>
 	<artifactId>kitchen</artifactId>
+	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>kitchen</name>
 	<description>Kitchen service as a part of project</description>
@@ -48,6 +49,11 @@
 			<groupId>org.springframework.kafka</groupId>
 			<artifactId>spring-kafka</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 
 	<profiles>
@@ -71,6 +77,22 @@
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.codehaus.cargo</groupId>
+				<artifactId>cargo-maven2-plugin</artifactId>
+				<version>1.5.0</version>
+				<configuration>
+					<container>
+						<containerId>tomcat7x</containerId>
+						<type>installed</type>
+						<home>Insert absolute path to tomcat 7 installation</home>
+					</container>
+					<configuration>
+						<type>existing</type>
+						<home>Insert absolute path to tomcat 7 installation</home>
+					</configuration>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -113,5 +135,11 @@
 			</plugin>
 		</plugins>
 	</build>
-
+	<distributionManagement>
+		<repository>
+			<id>internal.repo</id>
+			<name>Internal repo</name>
+			<url>file:///C:\Users\School_Laptop  3\IdeaProjects\job4j_kitchen\test</url>
+		</repository>
+	</distributionManagement>
 </project>
