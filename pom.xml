@@ -73,8 +73,6 @@
 			</properties>
 		</profile>
 	</profiles>
-
-
 	<build>
 		<plugins>
 			<plugin>
@@ -83,7 +81,7 @@
 				<version>1.5.0</version>
 				<configuration>
 					<container>
-						<containerId>tomcat7x</containerId>
+						<containerId>tomcat9x</containerId>
 						<type>installed</type>
 						<home>Insert absolute path to tomcat 7 installation</home>
 					</container>
@@ -135,11 +133,11 @@
 			</plugin>
 		</plugins>
 	</build>
-	<distributionManagement>
+<!--	<distributionManagement>
 		<repository>
 			<id>internal.repo</id>
 			<name>Internal repo</name>
-			<url>file:///C:\Users\School_Laptop  3\IdeaProjects\job4j_kitchen\test</url>
+			<url>file:///home/vsevolod/IdeaProjects/job4j_kitchen/test/</url>
 		</repository>
-	</distributionManagement>
+	</distributionManagement>-->
 </project>
